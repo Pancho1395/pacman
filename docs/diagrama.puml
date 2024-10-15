@@ -1,0 +1,172 @@
+@startuml Pacman
+
+class Persona {}
+
+class Maquina {
+    +Encender()
+    +Apagar()
+}
+
+class Electricidad {}
+
+class Juego_Pacman {
+    +IniciarJuego()
+    +PausarJuego()
+    +FinalizarJuego()
+    +ReiniciarJuego()
+    -puntaje: 
+    -nivel: 
+}
+
+class Mapa {
+    +GenerarMapa()
+    +ReiniciarMapa()
+    -Muro: 
+}
+
+class Nivel {
+    +CargarNivel()
+    +FinalizarNivel()
+    -numeroNivel: 
+    -tiempoLimite:
+    -puntosNecesarios: 
+}
+
+class Laberinto {}
+
+class Color {}
+
+class Amarillo {}
+
+class Forma {}
+
+class Movimiento {
+    +Izquierda()
+    +Derecha() 
+    +Arriba()
+    +Abajo()
+    -velocidad: 
+}
+
+class Pildora {}
+
+class Super_Pildora {}
+
+class Poder {}
+
+class Fruta {}
+
+class Puntuacion {}
+
+class Fantasma {
+    +CambiarEstado()
+    +CambiarColor()
+}
+
+class Personaje {
+    +Vivir()
+    +Morir()
+    +Mover()
+    -Coordenada: 
+    -velocidad:
+}
+
+class Ojo {
+    +Ver()
+}
+
+class Pacman {
+    +Consumir()
+}
+
+class Tuneles {}
+
+class Contador {}
+
+class Version {}
+
+class GestorJuego {
+    +BuscarJuego()
+    +SeleccionarJuego()
+}
+
+class Muro {
+    -posicion: Coordenada
+}
+
+class Animacion {
+    +IniciarAnimacion()
+    +DetenerAnimacion()
+    -frameRate: 
+}
+
+class Depredador {
+    +Perseguir()
+}
+
+class Presa {
+    +Huir()
+}
+
+class Dificultad {
+    +AjustarDificultad()
+    -nivelDificultad: 
+    -velocidadFantasma:
+}
+
+class Escenario {
+    +Dibujar()
+    +Actualizar()
+    -fondo: 
+}
+
+class Estrategia {
+    +DefinirEstrategia()
+    -tipoEstrategia:
+}
+
+class Patron {
+    +SeguirPatron()
+    -tipoPatron: 
+}
+
+Persona o-- Maquina 
+Maquina o-- Electricidad 
+Maquina *-- Juego_Pacman
+Maquina *-- GestorJuego
+Juego_Pacman *-- Mapa
+Juego_Pacman --* GestorJuego
+Mapa <|-- Laberinto
+Mapa *-- Nivel
+Juego_Pacman *-- Pacman
+Juego_Pacman *-- Puntuacion
+Pacman *-- Color
+Color <|-- Amarillo
+Pacman *-- Forma
+Pacman *-- Movimiento 
+Pacman *-- Ojo
+Pacman o-- Pildora
+Pildora <|-- Super_Pildora
+Super_Pildora *-- Poder
+Pacman --|> Personaje 
+Fantasma --|> Personaje 
+Pildora *-- Puntuacion 
+Fruta *-- Puntuacion 
+Fantasma *-- "2" Ojo
+Juego_Pacman "1" *-- "4" Fantasma
+Mapa *-- Tuneles
+Mapa *-- Muro
+Contador o-- Puntuacion
+Nivel o-- "*" Version
+Juego_Pacman *-- Animacion
+Animacion --* Personaje
+Personaje <|-- Depredador
+Depredador --|> Fantasma
+Personaje <|-- Presa
+Presa --|> Pacman
+Juego_Pacman *-- Dificultad
+Juego_Pacman *-- Escenario
+Fantasma *-- Estrategia
+Estrategia *-- Patron
+
+@enduml
