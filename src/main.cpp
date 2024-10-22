@@ -3,7 +3,18 @@
 
 
 int main(){
-    std::cout<<"Imprimir desde c++"<<std::endl;
+
+    TazoDorado coqueto;
+
+    coqueto.Flotar();
+
+    std::cout
+    <<"El coqueto esta flotando?"
+    <<std::endl
+    <<coqueto.Flotando()
+    <<std::endl;
+    
+
 
 }
 
