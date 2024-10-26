@@ -1,7 +1,7 @@
 run : bin/tazo
 	./bin/tazo
 
-runMen : bin/mem
+runMem : bin/mem
 		./bin/mem
 		
 bin/tazo : src/main.cpp
